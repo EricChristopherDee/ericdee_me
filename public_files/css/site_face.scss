@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 25px;
+}
+
+body {
+  background-color: rgba(251, 252, 253, 0.81);
+}
+
+section.content_variability {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  grid-auto-rows: minmax(81px, auto);
+  background-color: rgba(121, 196, 225, 0.81);
+
+  & div.wordpress_post_outlines {
+    padding-top: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgba(225, 144, 64, 0.81);
+    color: rgba(9, 16, 25, 0.81);
+    height: fit-content;
+    padding-bottom: 16px;
+    border-bottom: 16px solid rgba(64, 81, 100, 0.81);
+    border-radius: 2px;
+    & h2 {
+      text-decoration: underline;
+      padding-bottom: 4px;
+      background-color: rgba(224, 122, 62, 0.81);
+      width: 100%;
+    }
+  }
+
+  width: fit-content;
+}
