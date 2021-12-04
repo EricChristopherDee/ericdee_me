@@ -15,16 +15,16 @@ app.use(express.static(path.join(__dirname + "/public_files/")));
 
 var wordpress_posts;
 
-/* 
-    The purpose of this call is to periodically update behind the scenes, and let the JavaScript + HTML do the work 
+/*
+    The purpose of this call is to periodically update behind the scenes, and let the JavaScript + HTML do the work
     Justification: The wordpress API can be slow.
 */
 
 //  TODO: Store images in a database, and replace them as needed.
 
-/* 
+/*
     APPLICATION: This website serves as a proxy with minimal external load times, at the cost of being slightly
-                 behind its API endpoints. 
+                 behind its API endpoints.
 */
 
 async function server_backlog() {
@@ -62,6 +62,29 @@ app.get("/wordpress_all_posts", (req, res) => {
   res.send(wordpress_posts);
   console.log(
     `A get request has been received/sent for wordpress posts from ${
+      req.header("x-forwarded-for") || req.connection.remoteAddress
+    }.`
+  );
+});
+
+/* UNRELATED (School projects) */
+
+app.get("/school-api/class-animal-data", (req, res) => {
+  // Allowing endpoint access from external networks
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Methods", "GET");
+  // res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+  let animalsJSON = fs.readFileSync(
+    "./public_files/school/animals.json",
+    "utf-8"
+  );
+  res.json(animalsJSON);
+  console.log(
+    `A get request has been received/sent for animal data from ${
       req.header("x-forwarded-for") || req.connection.remoteAddress
     }.`
   );
