@@ -5,7 +5,6 @@ let content_variability = document.querySelector(".content_variability");
     .then((response) => response.json())
     .then((data) => {
       data.forEach((post) => {
-        console.log(post);
         let postOutline = document.createElement("div");
         postOutline.classList.add("wordpress_post_outlines");
         let postTitle = document.createElement("h2");

@@ -3,17 +3,17 @@ import express from "express";
 import axios from "axios";
 import cron from "node-cron";
 import fs from "fs";
+import https from "https";
 
 if (!fs.existsSync("./api_access_files/json")) {
   fs.mkdirSync("./api_access_files/json", { recursive: true });
 }
 
+let production = false;
+
 const app = express();
-const port = 3000;
 
 app.use(express.static(path.join(__dirname + "/public_files/")));
-
-var wordpress_posts;
 
 /*
     The purpose of this call is to periodically update behind the scenes, and let the JavaScript + HTML do the work
@@ -26,6 +26,8 @@ var wordpress_posts;
     APPLICATION: This website serves as a proxy with minimal external load times, at the cost of being slightly
                  behind its API endpoints.
 */
+
+var wordpress_posts;
 
 async function server_backlog() {
   await axios
@@ -48,11 +50,23 @@ async function server_backlog() {
 
 server_backlog();
 
-/**************************************************************************************************************************/
+/*
+  * * * * * *
+  | | | | | |
+  | | | | | day of week
+  | | | | month
+  | | | day of month
+  | | hour
+  | minute
+  second ( optional )
 
-app.listen(port, () => {
-  console.log(`This server is available on port ${port}.`);
+  5 Asterisks will run a task once a minute.
+*/
+cron.schedule("* * * * *", function () {
+  server_backlog();
 });
+
+/**************************************************************************************************************************/
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/public_files/html/index.html"));
@@ -62,11 +76,37 @@ app.get("/wordpress_all_posts", (req, res) => {
   res.send(wordpress_posts);
   console.log(
     `A get request has been received/sent for wordpress posts from ${
-      req.header("x-forwarded-for") || req.connection.remoteAddress
+      req.header("x-forwarded-for") || req.socket.remoteAddress
     }.`
   );
 });
 
+if (production) {
+  const port = 443;
+  const { key, cert } = () => {
+    // Obfuscates the directory name
+    const certdir = fs.readdir("/etc/letsencrypt/live")[0];
+    return {
+      cert: fs.readFile(`/etc/letsencrypt/live/${certdir}/fullchain.pem`),
+      key: fs.readFile(`/etc/letsencrypt/live/${certdir}/privkey.pem`),
+    };
+  };
+  const https_server = https
+    .createServer({ key, cert }, app)
+    .listen(port, () => {
+      console.log(`This https server is available on port ${port}.`);
+    });
+} else {
+  const port = 80;
+  app.listen(port, () => {
+    console.log(`This https server is available on port ${port}.`);
+  });
+}
+
+/*
+ */
+/*
+ */
 /* UNRELATED (School projects) */
 
 app.get("/school-api/class-animal-data", (req, res) => {
@@ -85,23 +125,7 @@ app.get("/school-api/class-animal-data", (req, res) => {
   res.json(animalsJSON);
   console.log(
     `A get request has been received/sent for animal data from ${
-      req.header("x-forwarded-for") || req.connection.remoteAddress
+      req.header("x-forwarded-for") || req.socket.remoteAddress
     }.`
   );
-});
-
-/*
-  * * * * * *
-  | | | | | |
-  | | | | | day of week
-  | | | | month
-  | | | day of month
-  | | hour
-  | minute
-  second ( optional )
-
-  5 Asterisks will run a task once a minute.
-*/
-cron.schedule("* * * * *", function () {
-  server_backlog();
 });
