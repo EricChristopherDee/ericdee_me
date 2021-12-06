@@ -9,7 +9,7 @@ if (!fs.existsSync("./api_access_files/json")) {
   fs.mkdirSync("./api_access_files/json", { recursive: true });
 }
 
-let production = false;
+let production = true;
 
 const app = express();
 
@@ -83,13 +83,9 @@ app.get("/wordpress_all_posts", (req, res) => {
 
 if (production) {
   const port = 443;
-  const { key, cert } = () => {
-    // Obfuscates the directory name
-    const certdir = fs.readdir("/etc/letsencrypt/live")[0];
-    return {
-      cert: fs.readFile(`/etc/letsencrypt/live/${certdir}/fullchain.pem`),
-      key: fs.readFile(`/etc/letsencrypt/live/${certdir}/privkey.pem`),
-    };
+  const { key, cert } = {
+      cert: fs.readFileSync(`/etc/letsencrypt/live/${__dirname.replace(/root/,'')}/fullchain.pem`),
+      key: fs.readFileSync(`/etc/letsencrypt/live/${__dirname.replace(/root/,'')}/privkey.pem`),
   };
   const https_server = https
     .createServer({ key, cert }, app)
