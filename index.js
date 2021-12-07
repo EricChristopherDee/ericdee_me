@@ -84,8 +84,12 @@ app.get("/wordpress_all_posts", (req, res) => {
 if (production) {
   const port = 443;
   const { key, cert } = {
-      cert: fs.readFileSync(`/etc/letsencrypt/live/${__dirname.replace(/root/,'')}/fullchain.pem`),
-      key: fs.readFileSync(`/etc/letsencrypt/live/${__dirname.replace(/root/,'')}/privkey.pem`),
+    cert: fs.readFileSync(
+      `/etc/letsencrypt/live/${__dirname.replace(/root/, "")}/fullchain.pem`
+    ),
+    key: fs.readFileSync(
+      `/etc/letsencrypt/live/${__dirname.replace(/root/, "")}/privkey.pem`
+    ),
   };
   const https_server = https
     .createServer({ key, cert }, app)
