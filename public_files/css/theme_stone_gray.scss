@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Baloo Bhaiijaan 2";
+  src: url(../fonts/baloo_bhaijaan_2/static/BalooBhaijaan2-Regular.ttf);
+}
+
+:root {
+  --bone_white: rgba(251, 252, 253, 0.81);
+  --stone_gray: rgba(96, 96, 96, 0.36);
+  --lizard_green: rgba(81, 225, 16, 0.16);
+
+  --text_default: rgba(1, 4, 9, 0.81);
+  --background_default: rgba(196, 84, 36, 0.16);
+
+  --header_top: rgba(49, 196, 225, 0.16);
+  --header_bottom: rgba(196, 225, 64, 0.16);
+
+  --links_black: rgba(1, 4, 9, 0.81);
+  --links_blue: rgba(64, 100, 225, 0.81);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Baloo Bhaiijaan 2", sans-serif;
+  font-size: 25px;
+  font-weight: 256;
+  color: var(text_default);
+}
+
+a {
+  color: var(--links_black);
+}
+
+div.center_49_percent_width {
+  width: 49%;
+  margin: 0 auto;
+}
+
+div.center_81_percent_width {
+  width: 81%;
+  margin: 0 auto;
+}
+
+body {
+  // background-color: var(--bone_white);
+  background-color: var(--background_default);
+
+  header {
+    clip-path: polygon(0 0, 81% 0, 100% 100%, 0 100%);
+
+    & div.breaker_top {
+      min-height: 16vh;
+      background-color: var(--header_top);
+      background-image: url(/images/copyrighted/renders/edited/styled_shattered_tiki.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 49%;
+      border-bottom: 4px solid rgba(1, 4, 9, 0.04);
+
+      & a.site_logo {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        padding-right: 16px;
+        padding-left: 16px;
+        background-color: var(--bone_white);
+        text-decoration: none;
+        border-radius: 16px;
+        border: 1px solid rgba(1, 4, 9, 0.16);
+      }
+    }
+
+    & div.breaker_bottom {
+      margin: 0 auto;
+      min-height: 16vh;
+      background-color: var(--header_bottom);
+      background-image: url(/images/copyrighted/renders/edited/styled_oreo_tiki.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 16%;
+      border-bottom: 4px solid rgba(1, 4, 9, 0.04);
+    }
+  }
+
+  div.site_navigator {
+    margin-top: 16px;
+    & nav.site_navigator {
+      margin: 0 auto;
+      display: inline-grid;
+      width: 100%;
+      grid-template-columns: 16fr 1fr;
+      background-color: rgba(251, 252, 253, 0.04);
+      backdrop-filter: blur(2);
+      padding: 4px;
+      border-top: 1px solid var(--bone_white);
+      border-bottom: 4px solid var(--bone_white);
+      border-radius: 16px;
+      box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.04);
+
+      & ul.index_list {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & li {
+          padding: 4px;
+          background-color: var(--lizard_green);
+          border-left: 4px solid var(--bone_white);
+          border-radius: 16px;
+          box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.16);
+
+          & a {
+            text-decoration: none;
+          }
+        }
+      }
+
+      & ul.icons_social_media {
+        list-style: none;
+
+        & li {
+          & a {
+            padding-left: 4px;
+          }
+
+          & img {
+            height: 49%;
+            width: 49%;
+            max-height: 25px;
+            max-width: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  section.proxy_content {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 25vw);
+    grid-gap: 16px;
+    width: 100%;
+
+    & div.borders_wordpress_post {
+      background-color: var(--stone_gray);
+      border: 1px solid rgba(1, 4, 9, 0.16);
+      border-radius: 4px;
+      box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.16);
+
+      & h2 {
+        padding: 4px;
+        font-weight: 625;
+      }
+
+      & p {
+        padding: 16px;
+
+        & a {
+          color: var(--links_blue);
+        }
+      }
+    }
+  }
+}

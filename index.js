@@ -5,7 +5,7 @@ import cron from "node-cron";
 import fs from "fs";
 import https from "https";
 
-let production = false;
+let production = true;
 
 if (!fs.existsSync("./api_access_files/json")) {
   fs.mkdirSync("./api_access_files/json", { recursive: true });
