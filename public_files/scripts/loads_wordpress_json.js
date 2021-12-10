@@ -1,4 +1,4 @@
-let content_variability = document.querySelector(".content_variability");
+let content_variability = document.querySelector(".proxy_content");
 
 !(async function () {
   let data = await fetch("/wordpress_all_posts")
@@ -6,7 +6,7 @@ let content_variability = document.querySelector(".content_variability");
     .then((data) => {
       data.forEach((post) => {
         let postOutline = document.createElement("div");
-        postOutline.classList.add("wordpress_post_outlines");
+        postOutline.classList.add("borders_wordpress_post");
         let postTitle = document.createElement("h2");
         postTitle.innerHTML = post.title.rendered;
         postOutline.appendChild(postTitle);

@@ -5,14 +5,13 @@ import cron from "node-cron";
 import fs from "fs";
 import https from "https";
 
+let production = false;
+
 if (!fs.existsSync("./api_access_files/json")) {
   fs.mkdirSync("./api_access_files/json", { recursive: true });
 }
 
-let production = true;
-
 const app = express();
-
 app.use(express.static(path.join(__dirname + "/public_files/")));
 
 /*
@@ -109,6 +108,11 @@ if (production) {
  */
 /* UNRELATED (School projects) */
 
+let animalsJSON = fs.readFileSync(
+  "./public_files/json/school/animals.json",
+  "utf-8"
+);
+
 app.get("/school-api/class-animal-data", (req, res) => {
   // Allowing endpoint access from external networks
   res.header("Access-Control-Allow-Origin", "*");
@@ -118,10 +122,6 @@ app.get("/school-api/class-animal-data", (req, res) => {
   );
   res.header("Access-Control-Allow-Methods", "GET");
   // res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
-  let animalsJSON = fs.readFileSync(
-    "./public_files/school/animals.json",
-    "utf-8"
-  );
   res.json(animalsJSON);
   console.log(
     `A get request has been received/sent for animal data from ${

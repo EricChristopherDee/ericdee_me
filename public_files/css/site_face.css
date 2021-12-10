@@ -1,46 +1,178 @@
+@font-face {
+  font-family: "Baloo Bhaiijaan 2";
+  src: url(../fonts/baloo_bhaijaan_2/static/BalooBhaijaan2-Regular.ttf);
+}
+
+:root {
+  --bone_white: rgba(251, 252, 253, 0.81);
+  --stone_gray: rgba(96, 96, 96, 0.36);
+  --lizard_green: rgba(81, 225, 16, 0.16);
+  --text_default: rgba(1, 4, 9, 0.81);
+  --background_default: rgba(196, 84, 36, 0.16);
+  --header_top: rgba(49, 196, 225, 0.16);
+  --header_bottom: rgba(196, 225, 64, 0.16);
+  --links_black: rgba(1, 4, 9, 0.81);
+  --links_blue: rgba(64, 100, 225, 0.81);
+}
+
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Baloo Bhaiijaan 2", sans-serif;
   font-size: 25px;
+  font-weight: 256;
+  color: var(text_default);
+}
+
+a {
+  color: var(--bone_white);
+}
+
+div.center_49_percent_width {
+  width: 49%;
+  margin: 0 auto;
+}
+
+div.center_81_percent_width {
+  width: 81%;
+  margin: 0 auto;
 }
 
 body {
-  background-color: rgba(251, 252, 253, 0.81);
+  background-color: var(--background_default);
 }
 
-section.content_variability {
+body header {
+  -webkit-clip-path: polygon(0 0, 81% 0, 100% 100%, 0 100%);
+          clip-path: polygon(0 0, 81% 0, 100% 100%, 0 100%);
+}
+
+body header div.breaker_top {
+  min-height: 16vh;
+  background-color: var(--header_top);
+  background-image: url(/images/copyrighted/renders/edited/styled_shattered_tiki.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25%;
+  border-bottom: 4px solid rgba(1, 4, 9, 0.04);
+}
+
+body header div.breaker_top a.site_logo {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding-right: 16px;
+  padding-left: 16px;
+  background-color: var(--bone_white);
+  text-decoration: none;
+  border-radius: 16px;
+  border: 1px solid rgba(1, 4, 9, 0.16);
+}
+
+body header div.breaker_bottom {
+  margin: 0 auto;
+  min-height: 16vh;
+  background-color: var(--header_bottom);
+  background-image: url(/images/copyrighted/renders/edited/styled_oreo_tiki.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25%;
+  border-bottom: 4px solid rgba(1, 4, 9, 0.04);
+}
+
+body div.site_navigator {
+  margin-top: 16px;
+}
+
+body div.site_navigator nav.site_navigator {
+  margin: 0 auto;
   display: -ms-inline-grid;
   display: inline-grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  grid-auto-rows: minmax(81px, auto);
-  background-color: rgba(121, 196, 225, 0.81);
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-section.content_variability div.wordpress_post_outlines {
-  padding-top: 16px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: rgba(225, 144, 64, 0.81);
-  color: rgba(9, 16, 25, 0.81);
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding-bottom: 16px;
-  border-bottom: 16px solid rgba(64, 81, 100, 0.81);
-  border-radius: 2px;
-}
-
-section.content_variability div.wordpress_post_outlines h2 {
-  text-decoration: underline;
-  padding-bottom: 4px;
-  background-color: rgba(224, 122, 62, 0.81);
   width: 100%;
+  -ms-grid-columns: 16fr 1fr;
+      grid-template-columns: 16fr 1fr;
+  background-color: rgba(251, 252, 253, 0.04);
+  -webkit-backdrop-filter: blur(2);
+          backdrop-filter: blur(2);
+  padding: 4px;
+  border-top: 1px solid var(--bone_white);
+  border-bottom: 4px solid var(--bone_white);
+  border-radius: 16px;
+  -webkit-box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.04);
+          box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.04);
+}
+
+body div.site_navigator nav.site_navigator ul.index_list {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body div.site_navigator nav.site_navigator ul.index_list li {
+  padding: 4px;
+  background-color: var(--stone_gray);
+  border-left: 4px solid var(--bone_white);
+  border-radius: 16px;
+  -webkit-box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.16);
+          box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.16);
+}
+
+body div.site_navigator nav.site_navigator ul.index_list li a {
+  text-decoration: none;
+}
+
+body div.site_navigator nav.site_navigator ul.icons_social_media {
+  list-style: none;
+}
+
+body div.site_navigator nav.site_navigator ul.icons_social_media li a {
+  padding-left: 4px;
+}
+
+body div.site_navigator nav.site_navigator ul.icons_social_media li img {
+  height: 49%;
+  width: 49%;
+  max-height: 25px;
+  max-width: 25px;
+}
+
+body section.proxy_content {
+  margin-top: 16px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (25vw)[3];
+      grid-template-columns: repeat(3, 25vw);
+  grid-gap: 16px;
+  width: 100%;
+}
+
+body section.proxy_content div.borders_wordpress_post {
+  background-color: var(--lizard_green);
+  border: 1px solid rgba(1, 4, 9, 0.16);
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.16);
+          box-shadow: 1px 4px 9px rgba(1, 4, 9, 0.16);
+}
+
+body section.proxy_content div.borders_wordpress_post h2 {
+  padding: 4px;
+  font-weight: 625;
+}
+
+body section.proxy_content div.borders_wordpress_post p {
+  padding: 16px;
+}
+
+body section.proxy_content div.borders_wordpress_post p a {
+  color: var(--links_blue);
 }
 /*# sourceMappingURL=site_face.css.map */
