@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eric's Website</title>
+    <script src="/scripts/service_workers/index_service_workers.js"></script>
+    <script src="/scripts/creates_a_session.js"></script>
     <script src="/scripts/changes_the_theme.js" defer></script>
-    <script src="/scripts/loads_json_wordpress_from_proxy.js" defer></script>
-    <link rel="stylesheet" href="/css/theme_stone_gray.css">
-    <link rel="stylesheet" href="/css/theme_lizard_green.css">
-</head>
+    <script
+      src="/scripts/api/loads_json_wordpress_from_proxy.js"
+      defer
+    ></script>
+    <link rel="stylesheet" href="/css/theme_stone_gray.css" />
+    <link rel="stylesheet" href="/css/theme_lizard_green.css" />
+  </head>
 
-<body>
+  <script>
+    // Although redundant, the service workers this registers are defined in the same script as this function.
+    registers_index_service_workers();
+  </script>
+
+  <body>
     <header>
-        <div class="breaker_top">
-            <!-- <a class="site_logo" href="./index.html">ericdee.me</a> -->
-            <!-- interactive menu goes here -->
-        </div>
-        <div class="breaker_bottom">
-            <!-- needs content -->
-        </div>
+      <div class="breaker_top">
+        <!-- <a class="site_logo" href="./index.html">ericdee.me</a> -->
+        <!-- interactive menu goes here -->
+      </div>
+      <div class="breaker_bottom">
+        <!-- needs content -->
+      </div>
     </header>
 
     <div class="site_navigator center_49_percent_width">
-        <nav class="site_navigator">
-            <ul class="index_list">
-                <li><a href="./">Home</a></li>
-                <li><a id="theme_changer" href="#changed_theme!" onclick="theme_swap()">Theme</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">LinkedIn</a></li>
-            </ul>
-            <ul class="icons_social_media">
-                <li><a href="#"><img src="/images/public_domain/icons/twitter.png"
-                            alt="This twitter icon didn't load from your browser"></a></li>
-            </ul>
-        </nav>
+      <nav class="site_navigator">
+        <ul class="index_list">
+          <li><a href="./">Home</a></li>
+          <li>
+            <a id="theme_changer" href="#changed_theme!" onclick="theme_swap()"
+              >Theme</a
+            >
+          </li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+        <ul class="icons_social_media">
+          <li>
+            <a href="#"
+              ><img
+                src="/images/public_domain/icons/twitter.png"
+                alt="This twitter icon didn't load from your browser"
+            /></a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <!--
@@ -43,12 +61,10 @@
     -->
 
     <div class="json_fetch_box center_81_percent_width">
-        <output class="json_fetch_box">
-            <!-- these should be stone gray -->
-            <section class="proxy_content"></section>
-        </output>
+      <output class="json_fetch_box">
+        <!-- these should be stone gray -->
+        <section class="proxy_content"></section>
+      </output>
     </div>
-
-</body>
-
+  </body>
 </html>

@@ -1,9 +1,13 @@
+//  TODO: • Store images in a database, and replace them as needed. Save them clientside using service workers.
+//        • Generate session/local count on the index to refresh the cache for users who are consistent with visits. They are probably
+//        looking for more recent data.
+
 import path from "path";
+import fs from "fs";
 import express from "express";
 import axios from "axios";
-import cron from "node-cron";
-import fs from "fs";
 import https from "https";
+import cron from "node-cron";
 
 let production = true;
 
@@ -18,8 +22,6 @@ app.use(express.static(path.join(__dirname + "/public_files/")));
     The purpose of this call is to periodically update behind the scenes, and let the JavaScript + HTML do the work
     Justification: The wordpress API can be slow.
 */
-
-//  TODO: Store images in a database, and replace them as needed.
 
 /*
     APPLICATION: This website serves as a proxy with minimal external load times, at the cost of being slightly
@@ -36,7 +38,6 @@ async function server_backlog() {
         "./api_access_files/json/wordpress_posts.json",
         JSON.stringify(response.data)
       );
-      console.log("A WordPress JSON file has been written.");
     })
     .catch((error) => {
       console.log(error);
