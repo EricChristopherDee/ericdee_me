@@ -2,12 +2,9 @@ function registers_index_service_workers() {
   console.log("A call to registers_index_service_workers has been made.");
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register(
-        "/scripts/service_workers/index_service_workers.js",
-        {
-          scope: "/scripts/service_workers/",
-        }
-      );
+      navigator.serviceWorker.register("/html/index_service_workers.js", {
+        scope: "/html/",
+      });
     });
   }
 }
@@ -32,5 +29,17 @@ self.addEventListener("install", function (event) {
       .catch((error) => {
         console("Images were not cached due to this error: " + error);
       })
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      if (response) {
+        return response;
+      } else {
+        return fetch(event.request);
+      }
+    })
   );
 });

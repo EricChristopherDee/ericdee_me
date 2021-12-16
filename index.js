@@ -9,7 +9,7 @@ import axios from "axios";
 import https from "https";
 import cron from "node-cron";
 
-let production = true;
+let production = false;
 
 if (!fs.existsSync("./api_access_files/json")) {
   fs.mkdirSync("./api_access_files/json", { recursive: true });
