@@ -12,8 +12,9 @@
       src="/scripts/api/loads_json_wordpress_from_proxy.js"
       defer
     ></script>
-    <link rel="stylesheet" href="/css/theme_stone_gray.css" />
-    <link rel="stylesheet" href="/css/theme_lizard_green.css" />
+    <link rel="stylesheet" href="/css/theme_no_changes.css" />
+    <!-- <link rel="stylesheet" href="/css/theme_stone_gray.css" />
+    <link rel="stylesheet" href="/css/theme_lizard_green.css" /> -->
   </head>
 
   <script>
@@ -22,27 +23,17 @@
   </script>
 
   <body>
-    <header>
-      <div class="breaker_top">
-        <!-- <a class="site_logo" href="./index.html">ericdee.me</a> -->
-        <!-- interactive menu goes here -->
-      </div>
-      <div class="breaker_bottom">
-        <!-- needs content -->
-      </div>
-    </header>
-
-    <div class="site_navigator center_49_percent_width">
+    <div class="top_of_header"></div>
+    <div class="bottom_of_header"></div>
+    <header class="index">
       <nav class="site_navigator">
         <ul class="index_list">
           <li><a href="./">Home</a></li>
-          <li>
-            <a id="theme_changer" href="#changed_theme!" onclick="theme_swap()"
-              >Theme</a
-            >
-          </li>
           <li><a href="#">Contact</a></li>
           <li><a href="#">LinkedIn</a></li>
+          <li>
+            <a id="theme_changer" href="#changed_theme!">Theme</a>
+          </li>
         </ul>
         <ul class="icons_social_media">
           <li>
@@ -54,17 +45,20 @@
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
 
-    <!--
-    content below
+    <div class="seperator"></div>
+
+    <div class="center_49_percent_width">
+      <!--
+    wordpress content
     -->
-
-    <div class="json_fetch_box center_81_percent_width">
-      <output class="json_fetch_box">
-        <!-- these should be stone gray -->
-        <section class="proxy_content"></section>
-      </output>
+      <div class="json_fetch_box center_81_percent_width">
+        <output class="json_fetch_box">
+          <!-- these should be stone gray -->
+          <section class="proxy_content"></section>
+        </output>
+      </div>
     </div>
   </body>
 </html>
