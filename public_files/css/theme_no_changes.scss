@@ -162,3 +162,26 @@ footer {
   text-align: center;
   color: rgba(251, 252, 253, 0.81);
 }
+
+@media only screen and (max-width: 1296px) {
+  header.index {
+    flex-direction: column;
+  }
+
+  div.bottom_of_header {
+    & h3 {
+      font-size: 36px;
+    }
+  }
+
+  nav.site_navigator {
+    margin: 0 auto;
+    margin-top: 4%;
+    margin-bottom: 16%;
+    flex-direction: column;
+
+    & ul {
+      flex-direction: column;
+    }
+  }
+}

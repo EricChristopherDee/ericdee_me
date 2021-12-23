@@ -6,14 +6,14 @@ import path from "path";
 import fs from "fs";
 import express from "express";
 import axios from "axios";
-import https from "https";
 import cron from "node-cron";
-
-let production = true;
+import https from "https";
 
 if (!fs.existsSync("./api_access_files/json")) {
   fs.mkdirSync("./api_access_files/json", { recursive: true });
 }
+
+let production = true;
 
 const app = express();
 app.use(express.static(path.join(__dirname + "/public_files/")));
@@ -104,10 +104,9 @@ if (production) {
 }
 
 /*
- */
-/*
- */
-/* UNRELATED (School projects) */
+ *
+ *
+ */ // Endpoints for a clientside class:
 
 let animalsJSON = fs.readFileSync(
   "./public_files/json/school/animals.json",
